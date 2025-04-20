@@ -1,7 +1,6 @@
 -- config LSP
 
 return {
-
     -- Автодополнение с nvim-cmp
     {
         "hrsh7th/nvim-cmp",
@@ -14,12 +13,6 @@ return {
             local cmp = require("cmp")
 
             cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        -- Для сниппетов, если используете их
-                        require("luasnip").lsp_expand(args.body)
-                    end,
-                },
                 mapping = {
                     ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                     ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -40,23 +33,41 @@ return {
 
     -- LSP
     {
-        "neovim/nvim-lspconfig",  -- Плагин для LSP-серверов
+        "neovim/nvim-lspconfig",
         config = function()
-            -- Настройка LSP для PHP (intelephense)
-            require'lspconfig'.intelephense.setup{
+            local lspconfig = require("lspconfig")
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            -- -- Получаем путь к Node через nvm
+            local nvm_version = "v23.11.0"
+            local nvm_root = os.getenv("NVM_DIR") or "/Users/igorgorovenko/.nvm"
+            local node_bin = nvm_root .. "/versions/node/" .. nvm_version .. "/bin"
+            local tsdk_path = nvm_root .. "/versions/node/" .. nvm_version .. "/lib/node_modules/typescript/lib"
+
+            -- Добавляем Node.js в PATH
+            vim.env.PATH = vim.env.PATH .. ":" .. node_bin
+
+            -- PHP
+            lspconfig.intelephense.setup {
                 cmd = { "intelephense", "--stdio" },
-                capabilities = require('cmp_nvim_lsp').default_capabilities(),
+                capabilities = capabilities,
             }
 
-        end,
-    },
-
-    -- Подключение автодополнения для LSP
-    {
-        "hrsh7th/cmp-nvim-lsp",
-        config = function()
-            -- Устанавливаем возможности для LSP
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            -- Vue / Volar
+            require'lspconfig'.volar.setup {
+                filetypes = { "vue" },
+                cmd = { "vue-language-server", "--stdio" },  -- команду запуска для LSP
+                capabilities = capabilities,
+                init_options = {
+                    typescript = {
+                        tsdk = tsdk_path
+                    },
+                    languageFeatures = {
+                        definition = { enabled = true },
+                        declaration = { enabled = true },
+                    }
+                }
+            }
         end,
     },
 }
