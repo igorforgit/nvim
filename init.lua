@@ -55,6 +55,3 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup(require('plugins')) -- plugins
 require('keymaps') -- keymaps
 
-require('cursor').setup();
-
-

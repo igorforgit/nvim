@@ -205,7 +205,7 @@ return {
         config = function()
             require('lualine').setup({
                 options = {
-                    theme = 'tokyonight-storm', -- или любая ваша тема
+                    theme = 'tokyonight-day',
                 },
                 sections = {
                     lualine_b = {'branch'},
@@ -225,8 +225,8 @@ return {
         "folke/tokyonight.nvim",
         priority = 1000,  -- плагин загрузится первым
         config = function()
-            vim.o.background = "dark"  -- настроить темный фон
-            vim.cmd([[colorscheme tokyonight-storm]])  -- установить тему Tokyonight
+          vim.o.background = "dark"  -- настроить тёмный фон (или 'light' при желании)
+            vim.cmd([[colorscheme tokyonight-day]])  -- установить тему
         end,
     },
 }
