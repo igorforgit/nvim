@@ -17,19 +17,8 @@ map('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true, desc = 'New ta
 map('n', '<C-x>', ':tabclose<CR>', { noremap = true, silent = true, desc = 'Close tab' })
 
 -- Навигация по методам
-map('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
-map('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
-map('n', '<leader>gr', vim.lsp.buf.references, { desc = 'Go to references' })
-map('n', '<leader>gs', vim.lsp.buf.document_symbol, { desc = 'Go to symbol' })
-
--- Отключить стрелочки
-map('n', '<Up>', ':echo "arrow is disabled!"<CR>', { noremap = true })
-map('n', '<Down>', ':echo "arrow is disabled!"<CR>', { noremap = true })
-map('n', '<Left>', ':echo "arrow is disabled!"<CR>', { noremap = true })
-map('n', '<Right>', ':echo "arrow is disabled!"<CR>', { noremap = true })
-
--- Отключить Ctrl+Z
-map('n', '<C-z>', ':echo "Ctrl+Z is disabled!"<CR>', opts)
+map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+map('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
 
 -- Снять выделение по Ctrl+L
 map('n', '<leader>l', ':nohlsearch<CR>', opts)
@@ -42,3 +31,22 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Поиск в �
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Символы в файле" })
 map("n", "<leader>fw", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Символы в проекте" })
 
+-- Отключить стрелочки
+map('n', '<Up>', ':echo "/ arrow is disabled!"<CR>', { noremap = true })
+map('n', '<Down>', ':echo "/ arrow is disabled!"<CR>', { noremap = true })
+map('n', '<Left>', ':echo "/ arrow is disabled!"<CR>', { noremap = true })
+map('n', '<Right>', ':echo "/ arrow is disabled!"<CR>', { noremap = true })
+
+-- Отключить Ctrl+Z
+map('n', '<C-z>', ':echo "/ Ctrl+Z is disabled!"<CR>', opts)
+
+-- Отключить команды gu и gU
+map('n', 'gu', ':echo "/ gu is disabled"<CR>', opts)
+map('n', 'gU', ':echo "/ gU is disabled"<CR>', opts)
+
+-- Отключить команды u и U в визуальном режиме
+map('v', 'u', ':<C-u>echo "/ u is disabled"<CR>', opts)  -- Отключаем 'u' в визуальном режиме
+map('v', 'U', ':<C-u>echo "/ U is disabled"<CR>', opts)  -- Отключаем 'U' в визуальном режим
+
+
+-- ###
