@@ -12,6 +12,21 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Move to the window below' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move to the window above' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Move to the window right' })
 
+-- создание сплитов
+map('n', '<leader>sj', ':split<CR><C-w>j', { desc = 'Horizontal split and move down' })
+map('n', '<leader>sk', ':split<CR><C-w>k', { desc = 'Horizontal split and move up' })
+map('n', '<leader>sl', ':vsplit<CR><C-w>l', { desc = 'Vertical split and move right' })
+map('n', '<leader>sh', ':vsplit<CR><C-w>h', { desc = 'Vertical split and move left' })
+map('n', '<leader>x', '<C-w>c', { desc = 'Close current window (split)' })
+
+-- Увеличить/уменьшить высоту
+map('n', '<C-Up>', ':resize +2<CR>', { desc = 'Increase window height' })
+map('n', '<C-Down>', ':resize -2<CR>', { desc = 'Decrease window height' })
+
+-- Увеличить/уменьшить ширину
+map('n', '<C-Right>', ':vertical resize +4<CR>', { desc = 'Increase window width' })
+map('n', '<C-Left>', ':vertical resize -4<CR>', { desc = 'Decrease window width' })
+
 -- Вкладки (переключение вкладок с другими сочетаниями)
 map('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true, desc = 'New tab' })
 map('n', '<C-x>', ':tabclose<CR>', { noremap = true, silent = true, desc = 'Close tab' })

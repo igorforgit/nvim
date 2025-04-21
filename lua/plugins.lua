@@ -28,6 +28,9 @@ return {
                 open_on_tab = true,
                 hijack_netrw = true,
                 on_attach = my_on_attach,
+                filters = {
+                    dotfiles = false,  -- Показывать скрытые файлы (в том числе .nuxt)
+                },
             })
         end,
     },
@@ -53,7 +56,6 @@ return {
             })
         end,
     },
-
 
     -- комментарии
     {
@@ -134,29 +136,13 @@ return {
         end,
     },
 
-    -- вертикальные линии
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        config = function()
-            require("ibl").setup {
-                indent = {
-                    char = "│", -- можно заменить на '|', '¦', '┊', '┆', и т.д.
-                },
-                scope = {
-                    enabled = false, -- отключить подсветку текущего уровня
-                },
-            }
-        end,
-    },
-
     -- таббар
     {
         'nvim-lualine/lualine.nvim',
         config = function()
             require('lualine').setup({
                 options = {
-                    theme = 'tokyonight-day',
+                    theme = 'tokyonight-storm',
                 },
                 sections = {
                     lualine_b = {'branch'},
@@ -176,8 +162,8 @@ return {
         "folke/tokyonight.nvim",
         priority = 1000,  -- плагин загрузится первым
         config = function()
-          vim.o.background = "dark"  -- настроить тёмный фон (или 'light' при желании)
-            vim.cmd([[colorscheme tokyonight-day]])  -- установить тему
+            vim.o.background = "dark"  -- настроить тёмный фон (или 'light' при желании)
+            vim.cmd([[colorscheme tokyonight-storm]])  -- установить тему
         end,
     },
 }

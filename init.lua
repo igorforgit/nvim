@@ -59,4 +59,3 @@ require('lazy').setup({
 })
 
 require('keymaps') -- keymaps
-
