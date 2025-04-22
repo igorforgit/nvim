@@ -63,5 +63,9 @@ map('n', 'gU', ':echo "/ gU is disabled"<CR>', opts)
 map('v', 'u', ':<C-u>echo "/ u is disabled"<CR>', opts)  -- Отключаем 'u' в визуальном режиме
 map('v', 'U', ':<C-u>echo "/ U is disabled"<CR>', opts)  -- Отключаем 'U' в визуальном режим
 
+-- Показать ошибки
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Показать ошибку под курсором" })
+
+
 
 -- ###
