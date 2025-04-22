@@ -61,6 +61,8 @@ return {
             .. "/node_modules/@vue/language-server"
 
             lspconfig.ts_ls.setup {
+                debounce_text_changes = 500,     -- Увеличьте задержку
+                maxDiagnosticDelay = 2000,       -- Задержка для отправки диагностических сообщений (в миллисекундах)
                 capabilities = capabilities,
                 init_options = {
                     plugins = {
