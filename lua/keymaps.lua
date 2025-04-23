@@ -67,9 +67,6 @@ map('v', 'U', ':<C-u>echo "/ U is disabled"<CR>', opts)  -- Отключаем '
 -- Показать ошибки
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Показать ошибку под курсором" })
 
--- сохранить файл
-map('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
-
 
 
 
