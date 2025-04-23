@@ -22,6 +22,7 @@ map('n', '<leader>x', '<C-w>c', { desc = 'Close current window (split)' })
 -- Увеличить/уменьшить высоту
 map('n', '<C-Up>', ':resize +2<CR>', { desc = 'Increase window height' })
 map('n', '<C-Down>', ':resize -2<CR>', { desc = 'Decrease window height' })
+map('n', '<C-0>', '<C-w>=', { desc = 'Equalize window sizes' })
 
 -- Увеличить/уменьшить ширину
 map('n', '<C-Right>', ':vertical resize +4<CR>', { desc = 'Increase window width' })
