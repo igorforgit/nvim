@@ -31,6 +31,10 @@ return {
                 filters = {
                     dotfiles = false,  -- Показывать скрытые файлы (в том числе .nuxt)
                 },
+                git = {
+                    enable = true,
+                    ignore = false,  -- ← отключает скрытие git-ignored файлов
+                },
             })
         end,
     },
