@@ -28,9 +28,13 @@ map('n', '<C-0>', '<C-w>=', { desc = 'Equalize window sizes' })
 map('n', '<C-Right>', ':vertical resize +4<CR>', { desc = 'Increase window width' })
 map('n', '<C-Left>', ':vertical resize -4<CR>', { desc = 'Decrease window width' })
 
--- Вкладки (переключение вкладок с другими сочетаниями)
+-- Вкладки
 map('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true, desc = 'New tab' })
 map('n', '<C-x>', ':tabclose<CR>', { noremap = true, silent = true, desc = 'Close tab' })
+map('n', 'th', 'gT', { desc = 'Previous tab' })
+map('n', 'tl', 'gt', { desc = 'Next tab' })
+map('n', '<C-t>h', ':tabmove -1<CR>', { desc = 'Move tab left' })
+map('n', '<C-t>l', ':tabmove +1<CR>', { desc = 'Move tab right' })
 
 -- Навигация по методам
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })

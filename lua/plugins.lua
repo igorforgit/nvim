@@ -1,5 +1,6 @@
-return {
+-- CONFIG NVIM
 
+return {
     -- боковая панель файлов
     {
         "nvim-tree/nvim-tree.lua",
@@ -29,7 +30,8 @@ return {
                 hijack_netrw = true,
                 on_attach = my_on_attach,
                 filters = {
-                    dotfiles = false,  -- Показывать скрытые файлы (в том числе .nuxt)
+                    dotfiles = false,           -- Показывать скрытые файлы (в том числе .nuxt)
+                    custom = { ".DS_Store" },   -- Исключить .DS_Store
                 },
                 git = {
                     enable = true,
