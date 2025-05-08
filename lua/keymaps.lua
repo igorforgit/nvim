@@ -40,6 +40,11 @@ map('n', '<C-t>l', ':tabmove +1<CR>', { desc = 'Move tab right' })
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 map('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
 
+map('n', '<leader>gd', function()
+    vim.cmd('tab split')
+    vim.lsp.buf.definition()
+end, { desc = 'Go to definition in new tab' })
+
 -- Снять выделение по Ctrl+L
 map('n', '<leader>l', ':nohlsearch<CR>', opts)
 
