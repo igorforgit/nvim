@@ -125,6 +125,24 @@ return {
         end,
     },
 
+    -- быстрый скролл
+    {
+        "rainbowhxch/accelerated-jk.nvim",
+        config = function()
+            require("accelerated-jk").setup({
+                mode = "time_driven",         -- ускорение со временем
+                enable_deceleration = false,  -- не замедляется при отпускании
+                acceleration_motions = {},
+                acceleration_limit = 150,     -- уменьшили лимит скорости, чтобы ускорение было менее резким
+                acceleration_table = {        -- таблица шагов ускорения (чем меньше число, тем быстрее)
+                    5, 10, 15, 20, 25, 30  -- плавнее увеличиваем скорость
+                },
+            })
+            vim.keymap.set("n", "j", "<Plug>(accelerated_jk_gj)")
+            vim.keymap.set("n", "k", "<Plug>(accelerated_jk_gk)")
+        end,
+    },
+
     -- git
     {
         "tpope/vim-fugitive",
