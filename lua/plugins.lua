@@ -29,6 +29,10 @@ return {
                 open_on_tab = true,
                 hijack_netrw = true,
                 on_attach = my_on_attach,
+                view = {
+                    width = 40,
+                    side = "left",
+                },
                 filters = {
                     dotfiles = false,           -- Показывать скрытые файлы (в том числе .nuxt)
                     custom = { ".DS_Store" },   -- Исключить .DS_Store
