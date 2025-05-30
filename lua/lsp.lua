@@ -50,19 +50,45 @@ return {
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local mason_registry = require("mason-registry")
 
+            -- Функция логирования
+            local function log_message(msg)
+                local log_path = vim.fn.stdpath("config") .. "/nvim.log"
+                local log_file = io.open(log_path, "a")
+                if log_file then
+                    log_file:write("[", os.date("%Y-%m-%d %H:%M:%S"), "] ", msg, "\n")
+                    log_file:close()
+                end
+            end
+
+            log_message("🔧 LSP конфигурация запущена.")
+
             -- PHP
             lspconfig.intelephense.setup {
                 cmd = { "intelephense", "--stdio" },
                 capabilities = capabilities,
+                settings = {
+                    intelephense = {
+                        files = {
+                            exclude = {
+                                "**/vendor/**",         -- Не кешурем папку vendor
+                            },
+                        },
+                    },
+                },
             }
 
-            -- Vue + TS (через ts_ls)
-            local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-            .. "/node_modules/@vue/language-server"
+            -- -- Vue 3 + TS with takeOverMode
+            -- -- Получаем пакет
+            local vue_pkg = mason_registry.get_package("vue-language-server")
+            log_message("vue package: " .. tostring(vue_pkg))
+
+            -- Получаем путь к vue-language-server
+            local vue_language_server_path = "/Users/igorgorovenko/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server"
+            log_message("vue_language_server_path: " .. tostring(vue_language_server_path))
 
             lspconfig.ts_ls.setup {
-                debounce_text_changes = 500,     -- Увеличьте задержку
-                maxDiagnosticDelay = 2000,       -- Задержка для отправки диагностических сообщений (в миллисекундах)
+                debounce_text_changes = 700,     -- Увеличьте задержку
+                maxDiagnosticDelay = 3000,       -- Задержка для отправки диагностических сообщений (в миллисекундах)
                 capabilities = capabilities,
                 init_options = {
                     plugins = {
