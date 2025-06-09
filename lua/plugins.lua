@@ -1,5 +1,16 @@
 -- CONFIG NVIM
 
+-- Темы, индекс начинается с 1
+local themeList = {
+    "tokyonight",
+    "tokyonight-night",
+    "tokyonight-storm",
+    "tokyonight-day",
+    "tokyonight-moon",
+}
+
+local selectedThemeIndex = 5 -- выбираем тему по индексу
+
 return {
     -- боковая панель файлов
     {
@@ -170,7 +181,7 @@ return {
         config = function()
             require('lualine').setup({
                 options = {
-                    theme = 'tokyonight-storm',
+                    theme = themeList[selectedThemeIndex],
                 },
                 sections = {
                     lualine_b = {'branch'},
@@ -191,7 +202,7 @@ return {
         priority = 1000,  -- плагин загрузится первым
         config = function()
             vim.o.background = "dark"  -- настроить тёмный фон (или 'light' при желании)
-            vim.cmd([[colorscheme tokyonight-storm]])  -- установить тему
+            vim.cmd("colorscheme " .. themeList[selectedThemeIndex])
         end,
     },
 }
