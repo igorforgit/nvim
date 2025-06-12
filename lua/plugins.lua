@@ -9,7 +9,7 @@ local themeList = {
     "tokyonight-moon",
 }
 
-local selectedThemeIndex = 5 -- выбираем тему по индексу
+local selectedThemeIndex = 3 -- выбираем тему по индексу
 
 return {
     -- боковая панель файлов
