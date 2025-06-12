@@ -208,11 +208,25 @@ return {
 
     -- GitHub Copilot
     {
-        "github/copilot.vim",
-        event = "InsertEnter",  -- загружается при входе в режим вставки
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
         config = function()
-            vim.g.copilot_no_tab_map = true
-            vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+            require("copilot").setup({
+                suggestion = {
+                    auto_trigger = true,
+                    -- отключаем внутренние бинды
+                    keymap = {
+                        accept = false,
+                        next = false,
+                        prev = false,
+                        dismiss = false,
+                    },
+                },
+            })
+
+            -- Подключаем кастомные бинды
+            require("keymaps").setup()
         end,
     },
 }

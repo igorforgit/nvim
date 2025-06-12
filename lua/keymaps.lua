@@ -76,6 +76,20 @@ map('v', 'U', ':<C-u>echo "/ U is disabled"<CR>', opts)  -- Отключаем '
 -- Показать ошибки
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Показать ошибку под курсором" })
 
+-- Copilot
+local M = {}
+
+function M.setup()
+    local copilot = require("copilot.suggestion")
+
+    vim.keymap.set("i", "<C-J>", function()
+        return copilot.accept()
+    end, { expr = true, silent = true, desc = "Accept Copilot suggestion" })
+end
+
+return M
+
+
 
 
 
