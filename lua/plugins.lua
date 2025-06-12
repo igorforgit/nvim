@@ -205,4 +205,14 @@ return {
             vim.cmd("colorscheme " .. themeList[selectedThemeIndex])
         end,
     },
+
+    -- GitHub Copilot
+    {
+        "github/copilot.vim",
+        event = "InsertEnter",  -- загружается при входе в режим вставки
+        config = function()
+            vim.g.copilot_no_tab_map = true
+            vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+        end,
+    },
 }
