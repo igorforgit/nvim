@@ -62,6 +62,26 @@ return {
 
             log_message("🔧 LSP конфигурация запущена.")
 
+            lspconfig.gopls.setup {
+                capabilities = capabilities,
+                flags = {
+                    debounce_text_changes = 150, -- задержка перед отправкой изменений
+                },
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                            shadow = true,
+                        },
+                        staticcheck = true,
+                    },
+                },
+                on_attach = function(client, bufnr)
+                    -- Пример: отключаем форматирование, если другой LSP тоже форматирует
+                    -- client.server_capabilities.documentFormattingProvider = false
+                end,
+            }
+
             -- PHP
             lspconfig.intelephense.setup {
                 cmd = { "intelephense", "--stdio" },
