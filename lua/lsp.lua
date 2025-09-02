@@ -66,15 +66,15 @@ return {
             lspconfig.intelephense.setup {
                 cmd = { "intelephense", "--stdio" },
                 capabilities = capabilities,
-                settings = {
-                    intelephense = {
-                        files = {
-                            exclude = {
-                                "**/vendor/**",         -- Не кешурем папку vendor
-                            },
-                        },
-                    },
-                },
+                -- settings = {
+                --     intelephense = {
+                --         files = {
+                --             exclude = {
+                --                 "**/vendor/**",         -- Не кешурем папку vendor
+                --             },
+                --         },
+                --     },
+                -- },
             }
 
             -- -- Vue 3 + TS with takeOverMode
