@@ -62,6 +62,13 @@ return {
 
             log_message("🔧 LSP конфигурация запущена.")
 
+            -- Для всех Go-файлов назначаем equalprg
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "go",
+                command = "setlocal equalprg=gofmt",
+            })
+
+            -- LSP gopls setup с автоформатированием при сохранении
             lspconfig.gopls.setup {
                 capabilities = capabilities,
                 flags = {
@@ -77,8 +84,16 @@ return {
                     },
                 },
                 on_attach = function(client, bufnr)
-                    -- Пример: отключаем форматирование, если другой LSP тоже форматирует
-                    -- client.server_capabilities.documentFormattingProvider = false
+
+                    if client.server_capabilities.documentFormattingProvider then
+                        -- Автоформат при сохранении
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({ bufnr = bufnr })
+                            end,
+                        })
+                    end
                 end,
             }
 
